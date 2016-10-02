@@ -1,0 +1,205 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.FullScreen">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.Dialog.Alert" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorWhite</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:windowBackground">@drawable/bg_alert_dialog</item>
+    </style>
+
+    <style name="AppTheme.Spinner">
+        <item name="android:padding">2dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/border_edit_text</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
+    <style name="AppTheme.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/space_x2</item>
+        <item name="android:paddingLeft">@dimen/space_x2</item>
+        <item name="android:paddingRight">@dimen/space_x2</item>
+        <item name="android:paddingBottom">@dimen/space_x2</item>
+        <item name="android:paddingTop">@dimen/space_x1</item>
+        <item name="android:textSize">@dimen/font_x2</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="AppTheme.EditText.White">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
+    </style>
+
+    <style name="AppTheme.EditText.Wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.EditText.CardView">
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
+    </style>
+
+    <style name="AppTheme.EditText.CardView.Post">
+        <item name="android:textSize">@dimen/font_x2</item>
+    </style>
+
+    <style name="AppTheme.TextInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <!--<item name="android:descendantFocusability">beforeDescendants</item>-->
+        <!--<item name="android:focusableInTouchMode">true</item>-->
+    </style>
+
+    <style name="AppTheme.TextInputLayout.CardView">
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
+        <item name="android:layout_marginTop">@dimen/space_x0</item>
+    </style>
+
+    <style name="AppTheme.TextView">
+        <item name="android:paddingLeft">@dimen/space_x2</item>
+        <item name="android:paddingRight">@dimen/space_x2</item>
+        <item name="android:paddingBottom">@dimen/space_x2</item>
+        <item name="android:paddingTop">@dimen/space_x1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:drawablePadding">@dimen/space_x2</item>
+        <item name="android:layout_marginTop">@dimen/space_x0</item>
+        <item name="android:layout_marginBottom">@dimen/space_x0</item>
+        <item name="android:layout_marginLeft">@dimen/space_x0</item>
+        <item name="android:layout_marginRight">@dimen/space_x0</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="AppTheme.TextView.Wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/space_x1</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+
+    <style name="AppTheme.CardView">
+        <item name="android:layout_margin">@dimen/space_x1</item>
+    </style>
+
+
+    <style name="AppTheme.TextView.CardView">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:padding">@dimen/space_x0</item>
+        <item name="android:textSize">@dimen/font_x2</item>
+    </style>
+
+
+    <style name="AppTheme.TextView.CardView.Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/font_x3</item>
+    </style>
+
+
+    <style name="AppTheme.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorDivider</item>
+    </style>
+
+    <style name="AppTheme.Divider.CardView">
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="AppTheme.CheckBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="AppTheme.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/space_x2</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/font_x3</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.Button.Wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/space_x3</item>
+        <item name="android:paddingRight">@dimen/space_x3</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="AppTheme.Radio">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_x2</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="AppTheme.Radio.Post">
+        <item name="android:textSize">@dimen/font_x1</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.CheckBox.Post">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:checkMark">?android:attr/listChoiceIndicatorMultiple</item>
+        <item name="android:checked">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="AppTheme.LinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/space_x0</item>
+    </style>
+
+    <style name="AppTheme.LinearLayout.CardView">
+        <item name="android:descendantFocusability">beforeDescendants</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/space_x1</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+</resources>

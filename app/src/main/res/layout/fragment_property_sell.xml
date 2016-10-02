@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Sell -->
+        <android.support.v7.widget.CardView
+            style="@style/AppTheme.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout style="@style/AppTheme.LinearLayout.CardView">
+
+                <TextView
+                    style="@style/AppTheme.TextView.CardView.Title"
+                    android:gravity="left"
+                    android:text="Selling Property Detail" />
+
+                <View style="@style/AppTheme.Divider.CardView"></View>
+
+                <!-- Property type-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextView"
+                        android:gravity="left"
+                        android:text="Property type:"
+                        android:textSize="@dimen/font_x2" />
+
+                    <RadioGroup
+                        android:id="@+id/rgPropertyType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbSelf"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Self" />
+
+                        <RadioButton
+                            android:id="@+id/rbBuilder"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Builder floor" />
+
+                        <RadioButton
+                            android:id="@+id/rbFlat"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Apartment/Flat" />
+                    </RadioGroup>
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </LinearLayout>
+
+                <!-- Room condition -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextView"
+                        android:gravity="left"
+                        android:text="House Condition:"
+                        android:textSize="@dimen/font_x2" />
+
+                    <RadioGroup
+                        android:id="@+id/rgHouseCondition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbFurnished"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Furnished" />
+
+                        <RadioButton
+                            android:id="@+id/rbSemiFurnished"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Semi-Furnished" />
+
+                        <RadioButton
+                            android:id="@+id/rbUnfurnished"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Un furnished" />
+                    </RadioGroup>
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </LinearLayout>
+
+                <!-- Room type -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextView"
+                        android:gravity="left"
+                        android:text="House Type:"
+                        android:textSize="@dimen/font_x2" />
+
+                    <RadioGroup
+                        android:id="@+id/rgHouseType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb1Bhk"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="1BHK" />
+
+                        <RadioButton
+                            android:id="@+id/rb2Bhk"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="2BHK" />
+
+                        <RadioButton
+                            android:id="@+id/rb3Bhk"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="3BHK" />
+
+                        <RadioButton
+                            android:id="@+id/rbOther"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Other" />
+                    </RadioGroup>
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </LinearLayout>
+
+
+                <!-- Floor Number-->
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Wrap"
+                        android:layout_alignParentLeft="true"
+                        android:text="Floor Number:"
+                        android:textSize="@dimen/font_x2"
+                        app:layout_widthPercent="50%" />
+
+                    <fragment
+                        android:id="@+id/componentFloorSelector"
+                        android:name="com.adcoretechnologies.rny.core.components.ComponentItemSelector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        app:layout_widthPercent="50%"
+                        tools:layout="@layout/component_item_selector"></fragment>
+
+                </android.support.percent.PercentRelativeLayout>
+
+                <!-- Area-->
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Wrap"
+                        android:layout_alignParentLeft="true"
+                        android:padding="@dimen/space_x2"
+                        android:text="Builtup Area :"
+                        android:textSize="@dimen/font_x2"
+                        app:layout_widthPercent="50%" />
+
+                    <EditText
+                        android:id="@+id/etArea"
+                        style="@style/AppTheme.TextView.Wrap"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/space_x3"
+                        android:hint="meter square"
+                        android:padding="@dimen/space_x2"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/font_x2"
+                        app:layout_widthPercent="50%" />
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </android.support.percent.PercentRelativeLayout>
+
+                <!-- Description-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <View style="@style/AppTheme.Divider"></View>
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Wrap"
+                        android:layout_alignParentLeft="true"
+                        android:padding="@dimen/space_x1"
+                        android:text="Something more about property :"
+                        android:textSize="@dimen/font_x2" />
+
+                    <EditText
+                        android:id="@+id/etDescription"
+                        style="@style/AppTheme.TextView.Wrap"
+                        android:layout_width="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/border_edit_text"
+                        android:gravity="left"
+                        android:hint="ex area, amenitiies, localities"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:padding="@dimen/space_x2"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/font_x2" />
+
+                </LinearLayout>
+
+                <!-- Price-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.percent.PercentRelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:descendantFocusability="beforeDescendants"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/AppTheme.TextView.Wrap"
+                            android:layout_alignParentLeft="true"
+                            android:padding="@dimen/space_x2"
+                            android:text="Approx Selling price:"
+                            android:textSize="@dimen/font_x2"
+
+                            app:layout_widthPercent="60%" />
+
+                        <EditText
+
+                            android:id="@+id/etSellingPrice"
+                            style="@style/AppTheme.TextView.Wrap"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/space_x3"
+                            android:hint="INR.."
+                            android:padding="@dimen/space_x2"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="@dimen/font_x2"
+                            app:layout_widthPercent="40%" />
+
+                    </android.support.percent.PercentRelativeLayout>
+
+                    <CheckBox
+                        android:id="@+id/isNegotiable"
+                        style="@style/AppTheme.CheckBox.Post"
+                        android:layout_width="wrap_content"
+                        android:padding="@dimen/space_x2"
+                        android:text="Negotiable?"
+                        android:textSize="@dimen/font_x2" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnSave"
+                    style="@style/AppTheme.Button"
+                    android:text="Save Property"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

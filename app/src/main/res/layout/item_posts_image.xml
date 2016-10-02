@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:padding="@dimen/space_x1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/space_x2"
+        android:paddingRight="@dimen/space_x2">
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="@dimen/space_x2"
+            android:background="@drawable/im_placeholder"
+            android:padding="2dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sv_image_placeholder" />
+
+        <ProgressBar
+            android:id="@+id/pbImageUpload"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="5" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:elevation="@dimen/space_x0"
+        android:src="@drawable/sv_remove" />
+
+</RelativeLayout>

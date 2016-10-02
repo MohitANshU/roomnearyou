@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Room Near You</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="slide_1_title">Hello Food!</string>
+    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+
+    <string name="slide_2_title">Movie Tickets</string>
+    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+
+    <string name="slide_3_title">Great Discounts</string>
+    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+
+    <string name="slide_4_title">World Travel</string>
+    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+
+     <string name="about_us">
+        "\n\nWe are a group of professionals who have worked across industry and functions. We bring"
+        "with us rich and varied experience of the corporate, consulting and entrepreneurial side."
+        "This blend of varied experiences helps us in understanding and executing our customer "
+        "requirements effectively.\n\n"
+
+        "We gives a platform to allow user to report their lost item to community which eventually allows community to help each other and bring the humanity again in our life \n"
+
+        "\n\nWe are a group of professionals who have worked across industry and functions. We bring"
+        "with us rich and varied experience of the corporate, consulting and entrepreneurial side."
+        "This blend of varied experiences helps us in understanding and executing our customer "
+        "requirements effectively.\n\n"
+
+        "We gives a platform to allow user to report their lost item to community which eventually allows community to help each other and bring the humanity again in our life \n"
+
+        "If you think you have some good suggestion to create the impact in this domain or "
+        "if you would like to talk more about business opportunities then click on above support "
+        " icon to drop your query to us. We will get back to you within 3 working days on the same.\n\n"
+
+        "Happy Humanity...\n\n"</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

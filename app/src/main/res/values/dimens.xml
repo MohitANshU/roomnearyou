@@ -1,0 +1,31 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="profile_bar_height">250dp</dimen>
+
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
+
+    <dimen name="space_x0">4dp</dimen>
+    <dimen name="space_x1">8dp</dimen>
+    <dimen name="space_x2">16dp</dimen>
+    <dimen name="space_x3">24dp</dimen>
+    <dimen name="space_x4">32dp</dimen>
+    <dimen name="space_x5">48dp</dimen>
+    <dimen name="space_x6">64dp</dimen>
+
+    <dimen name="font_x0">8sp</dimen>
+    <dimen name="font_x1">12sp</dimen>
+    <dimen name="font_x2">16sp</dimen>
+    <dimen name="font_x3">20sp</dimen>
+    <dimen name="font_x4">24sp</dimen>
+</resources>

@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        applicationId "com.adcoretechnologies.rny"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.android.support:cardview-v7:24.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.google.firebase:firebase-core:9.4.0'
+    compile 'com.google.firebase:firebase-auth:9.4.0'
+    compile 'com.google.firebase:firebase-database:9.4.0'
+    compile 'com.google.firebase:firebase-storage:9.4.0'
+    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.slider:library:1.1.5@aar'
+    compile 'com.google.firebase:firebase-config:9.4.0'
+    compile 'com.google.firebase:firebase-crash:9.4.0'
+    compile 'com.android.support:percent:24.2.1'
+    compile 'com.mikepenz:iconics-core:2.8.1@aar'
+    compile 'com.mikepenz:foundation-icons-typeface:3.0.0.2@aar'
+    compile 'com.mikepenz:ionicons-typeface:2.0.1.2@aar'
+    compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
+    compile 'com.google.android.gms:play-services-places:9.4.0'
+    compile 'com.google.android.gms:play-services:9.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile ('io.nlopez.smartlocation:library:3.2.7'){
+        transitive = false
+    }
+}
+
+// ADD THIS AT THE BOTTOM
+apply plugin: 'com.google.gms.google-services'

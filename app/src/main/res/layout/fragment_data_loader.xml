@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/space_x3"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/pbStatus"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:scrollbarStyle="outsideInset" />
+
+        <ImageView
+            android:id="@+id/ivStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sv_home2" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            style="@style/AppTheme.TextView"
+            android:gravity="center"
+            android:text="No items available" />
+    </LinearLayout>
+</RelativeLayout>

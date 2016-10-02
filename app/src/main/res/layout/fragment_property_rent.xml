@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <!-- RENT -->
+        <android.support.v7.widget.CardView
+            style="@style/AppTheme.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout style="@style/AppTheme.LinearLayout.CardView">
+
+                <TextView
+                    style="@style/AppTheme.TextView.CardView.Title"
+                    android:gravity="left"
+                    android:text="Rented Property Detail" />
+
+                <View style="@style/AppTheme.Divider.CardView"></View>
+
+                <!-- Room condition -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextView"
+                        android:gravity="left"
+                        android:text="Room Condition:"
+                        android:textSize="@dimen/font_x2" />
+
+                    <RadioGroup
+                        android:id="@+id/rgCondition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbFurnished"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Furnished" />
+
+                        <RadioButton
+                            android:id="@+id/rbSemiFurnished"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Semi-Furnished" />
+
+                        <RadioButton
+                            android:id="@+id/rbUnfurnished"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Un furnished" />
+                    </RadioGroup>
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </LinearLayout>
+
+                <!-- Room type -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextView"
+                        android:gravity="left"
+                        android:text="Room Type:"
+                        android:textSize="@dimen/font_x2" />
+
+                    <RadioGroup
+                        android:id="@+id/rgRoomType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb1Bhk"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="1BHK" />
+
+                        <RadioButton
+                            android:id="@+id/rb2Bhk"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="2BHK" />
+
+                        <RadioButton
+                            android:id="@+id/rb3Bhk"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="3BHK" />
+
+                        <RadioButton
+                            android:id="@+id/rbPg"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="PG" />
+
+                        <RadioButton
+                            android:id="@+id/rbOther"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Other" />
+                    </RadioGroup>
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </LinearLayout>
+
+                <!-- Suitable for -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextView"
+                        android:gravity="left"
+                        android:text="Suitable for:"
+                        android:textSize="@dimen/font_x2" />
+
+                    <RadioGroup
+                        android:id="@+id/rgSuitableFor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbBoys"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Boys" />
+
+                        <RadioButton
+                            android:id="@+id/rbGirls"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Girls" />
+
+                        <RadioButton
+                            android:id="@+id/rbBoth"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Both" />
+                    </RadioGroup>
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </LinearLayout>
+
+                <!-- For whom -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextView"
+                        android:gravity="left"
+                        android:text="For whom:"
+                        android:textSize="@dimen/font_x2" />
+
+                    <RadioGroup
+                        android:id="@+id/rgWhom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/cbFamily"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Family" />
+
+                        <RadioButton
+                            android:id="@+id/cbBachelor"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Bachelor" />
+
+                        <RadioButton
+                            android:id="@+id/cbBoth"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Both" />
+                    </RadioGroup>
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </LinearLayout>
+
+                <!-- Available from-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextView"
+                        android:gravity="left"
+                        android:text="Avaialble from:"
+                        android:textSize="@dimen/font_x2" />
+
+                    <RadioGroup
+                        android:id="@+id/rgVacant"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbVacant"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Vacant" />
+
+                        <RadioButton
+                            android:id="@+id/rbAboutToVacant"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="About to vacant" />
+
+                        <RadioButton
+                            android:id="@+id/rbOccupied"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Occupied" />
+                    </RadioGroup>
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </LinearLayout>
+
+                <!-- Amenities -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/AppTheme.TextView"
+                        android:gravity="left"
+                        android:text="Amenities:"
+                        android:textSize="@dimen/font_x2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/space_x1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/cb1"
+                            style="@style/AppTheme.CheckBox.Post"
+                            android:layout_width="match_parent"
+                            android:text="Meal" />
+
+                        <CheckBox
+                            android:id="@+id/cb2"
+                            style="@style/AppTheme.CheckBox.Post"
+                            android:layout_width="match_parent"
+                            android:text="Parking" />
+
+                        <CheckBox
+                            android:id="@+id/cb3"
+                            style="@style/AppTheme.CheckBox.Post"
+                            android:layout_width="match_parent"
+                            android:text="Inverter" />
+
+                        <CheckBox
+                            android:id="@+id/cb4"
+                            style="@style/AppTheme.CheckBox.Post"
+                            android:layout_width="match_parent"
+                            android:text="Security" />
+
+                        <CheckBox
+                            android:id="@+id/cb5"
+                            style="@style/AppTheme.CheckBox.Post"
+                            android:layout_width="match_parent"
+                            android:text="Not avaialble" />
+                    </LinearLayout>
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </LinearLayout>
+
+                <!-- Floor Number-->
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Wrap"
+                        android:layout_alignParentLeft="true"
+                        android:text="Floor Number:"
+                        android:textSize="@dimen/font_x2"
+                        app:layout_widthPercent="50%" />
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/tvFloorNumber"-->
+                    <!--style="@style/AppTheme.TextView.Wrap"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginRight="@dimen/space_x3"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="Ground Floor"-->
+                    <!--android:textColor="@color/colorPrimaryText"-->
+                    <!--android:textSize="@dimen/font_x2"-->
+                    <!--app:layout_widthPercent="50%" />-->
+                    <fragment
+                        android:id="@+id/componentFloorSelector"
+                        android:name="com.adcoretechnologies.rny.core.components.ComponentItemSelector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        app:layout_widthPercent="50%"
+                        tools:layout="@layout/component_item_selector"></fragment>
+
+                </android.support.percent.PercentRelativeLayout>
+
+                <!-- Rent-->
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Wrap"
+                        android:layout_alignParentLeft="true"
+                        android:padding="@dimen/space_x2"
+                        android:text="Approx Rent:"
+                        android:textSize="@dimen/font_x2"
+                        app:layout_widthPercent="50%" />
+
+                    <EditText
+                        android:id="@+id/etRent"
+                        style="@style/AppTheme.TextView.Wrap"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/space_x3"
+                        android:hint="INR.."
+                        android:inputType="numberDecimal"
+                        android:padding="@dimen/space_x2"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/font_x2"
+                        app:layout_widthPercent="50%" />
+
+                    <View style="@style/AppTheme.Divider"></View>
+                </android.support.percent.PercentRelativeLayout>
+
+                <Button
+                    android:id="@+id/btnSave"
+                    style="@style/AppTheme.Button"
+                    android:text="Save Property"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+</ScrollView>

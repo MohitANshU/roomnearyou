@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/sv_dashboard"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_property"
+            android:icon="@drawable/sv_property"
+            android:title="My Property" />
+        <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/sv_property_add"
+            android:title="Add New Property" />
+        <item
+            android:id="@+id/nav_activity"
+            android:icon="@drawable/sv_activity"
+            android:title="Activity" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/sv_about"
+                android:title="About us" />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/sv_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/sv_logout"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

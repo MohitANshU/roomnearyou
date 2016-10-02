@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "797489929522",
+    "firebase_url": "https://roomnearyou-cb792.firebaseio.com",
+    "project_id": "roomnearyou-cb792",
+    "storage_bucket": "roomnearyou-cb792.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797489929522:android:89dea5d296d7b7aa",
+        "android_client_info": {
+          "package_name": "com.adcoretechnologies.rny"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797489929522-6io79uoa2qo1n7g1in9vfk978jkp0eiq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adcoretechnologies.rny",
+            "certificate_hash": "0098D490AC1949359D0F57D5870D6EA6DE417678"
+          }
+        },
+        {
+          "client_id": "797489929522-55onqce45k7lvdid5mpnkltrehd9h9l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHxZhuUlJou8Mk9PY1navxlOyPpUrsxE8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797489929522-55onqce45k7lvdid5mpnkltrehd9h9l2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
