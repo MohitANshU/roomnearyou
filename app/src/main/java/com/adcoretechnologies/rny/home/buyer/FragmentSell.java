@@ -12,24 +12,24 @@ import com.google.firebase.database.ValueEventListener;
  * Created by Irfan on 06/10/16.
  */
 
-public class FragmentRent extends FragmentDashboard {
+public class FragmentSell extends FragmentDashboard {
 
     private DatabaseReference propertyRef;
 
-    public static FragmentRent newInstance() {
-        return new FragmentRent();
+    public static FragmentSell newInstance() {
+        return new FragmentSell();
     }
 
     @Override
     public void init() {
         super.init();
-        propertyRef = FirebaseDatabase.getInstance().getReference(Const.FIREBASE_DB_POST_RENT);
+        propertyRef = FirebaseDatabase.getInstance().getReference(Const.FIREBASE_DB_POST_SELL);
         fillData();
     }
 
     @Override
     public void fillData() {
-        toast("Fetching all property available for rent");
+        toast("Fetching all property available for sell");
         propertyRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -39,7 +39,7 @@ public class FragmentRent extends FragmentDashboard {
                     item.propertyId = snapshot.getKey();
                     allItems.add(item);
                 }
-                bindData(allItems,EpropertyType.RENT);
+                bindData(allItems, EpropertyType.SELL);
             }
 
             @Override

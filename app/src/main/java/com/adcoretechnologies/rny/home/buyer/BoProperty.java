@@ -1,5 +1,7 @@
 package com.adcoretechnologies.rny.home.buyer;
 
+import android.text.TextUtils;
+
 import java.util.List;
 
 /**
@@ -8,10 +10,132 @@ import java.util.List;
 
 public class BoProperty {
 
+    String defaultText = "Not Available";
+
     public boolean isRented() {
         if (postType.toLowerCase().equals("rent"))
             return true;
         else return false;
+    }
+
+    public String getRoomCondition() {
+        return TextUtils.isEmpty(roomCondition) ? defaultText : roomCondition;
+    }
+
+    public String getRoomType() {
+        return TextUtils.isEmpty(roomType) ? defaultText : roomType;
+    }
+
+    public String getSuitableFor() {
+        return TextUtils.isEmpty(suitableFor) ? defaultText : suitableFor;
+    }
+
+    public String getForWhom() {
+        return TextUtils.isEmpty(forWhom) ? defaultText : forWhom;
+    }
+
+    public String getAvailability() {
+        if (availability.equals("About to vacant")) {
+            if (TextUtils.isEmpty(vacantDate))
+                return defaultText;
+            else
+                return vacantDate;
+        } else
+            return TextUtils.isEmpty(availability) ? defaultText : availability;
+    }
+
+    public String getVacantDate() {
+        return vacantDate;
+    }
+
+    public long getVacantDateLong() {
+        return vacantDateLong;
+    }
+
+    public String getFloorNumber() {
+        return TextUtils.isEmpty(floorNumber) ? defaultText : floorNumber;
+    }
+
+    public String getRent() {
+        return TextUtils.isEmpty(rent) ? defaultText : rent + " INR/month";
+    }
+
+    public String getHouseCondition() {
+        return TextUtils.isEmpty(houseCondition) ? defaultText : houseCondition;
+    }
+
+    public String getHouseType() {
+        return TextUtils.isEmpty(houseType) ? defaultText : houseType;
+    }
+
+    public String getPropertyType() {
+        return TextUtils.isEmpty(propertyType) ? defaultText : propertyType;
+    }
+
+    public String getDescription() {
+        return TextUtils.isEmpty(description) ? defaultText : description;
+    }
+
+    public String getArea() {
+        return TextUtils.isEmpty(area) ? defaultText : area;
+    }
+
+    public String getSellingPrice() {
+        return TextUtils.isEmpty(sellingPrice) ? defaultText : sellingPrice + " INR";
+
+    }
+
+
+    public boolean isNegotiable() {
+        return isNegotiable;
+    }
+
+    public String getPropertyId() {
+        return propertyId;
+    }
+
+    public String getOwnerName() {
+        return TextUtils.isEmpty(ownerName) ? defaultText : ownerName;
+    }
+
+    public String getOwnerEmail() {
+        return TextUtils.isEmpty(ownerEmail) ? defaultText : ownerEmail;
+    }
+
+    public String getOwnerContactNumber() {
+        return TextUtils.isEmpty(ownerContactNumber) ? defaultText : ownerContactNumber;
+    }
+
+    public String getLocality() {
+        return TextUtils.isEmpty(locality) ? defaultText : locality;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public String getCity() {
+        return TextUtils.isEmpty(city) ? defaultText : city;
+    }
+
+    public String getPostedOn() {
+        return TextUtils.isEmpty(postedOn) ? defaultText : postedOn;
+    }
+
+    public long getPostedOnLong() {
+        return postedOnLong;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public String getHeroImageUrl() {
+        return heroImageUrl;
     }
 
     public String roomCondition;
@@ -31,7 +155,7 @@ public class BoProperty {
     public String sellingPrice;
     public String postType;
     public boolean isNegotiable;
-    public String id;
+    public String propertyId;
     public String ownerName;
     public String ownerEmail;
     public String ownerContactNumber;
@@ -112,8 +236,8 @@ public class BoProperty {
         isNegotiable = negotiable;
     }
 
-    public void setPropertyId(String id) {
-        this.id = id;
+    public void setPropertyId(String propertyId) {
+        this.propertyId = propertyId;
     }
 
     public void setOwnerName(String ownerName) {

@@ -22,6 +22,7 @@ import com.adcoretechnologies.rny.other.AboutActivity;
 import com.adcoretechnologies.rny.other.BOEventData;
 import com.adcoretechnologies.rny.profile.ProfileActivity;
 import com.adcoretechnologies.rny.util.Common;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
@@ -42,9 +43,8 @@ public class HomeBuyerActivity extends BaseActivity
     private ImageView ivProfilePic;
     private TextView tvName;
     private TextView tvEmail;
-    private enum PropertyType {
-        All, RENT, BUY;
-    }
+    private FragmentDashboard dashboard;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +100,20 @@ public class HomeBuyerActivity extends BaseActivity
 
     }
 
+    public BoProperty getPropertyById(String propertyId) {
+        if (dashboard != null) {
+            return dashboard.getProperty(propertyId);
+        }
+        return null;
+    }
+
+    public LatLng getCurrentLocation() {
+        if (dashboard != null) {
+            return dashboard.getCurrentLocation();
+        }
+        return null;
+    }
+
     public void openProfile() {
         startActivity(new Intent(this, ProfileActivity.class));
     }
@@ -147,11 +161,11 @@ public class HomeBuyerActivity extends BaseActivity
             startActivity(new Intent(this, AboutActivity.class));
             return true;
         } else if (id == R.id.nav_rent) {
-            showProperty(PropertyType.RENT);
+            showProperty(EpropertyType.RENT);
         } else if (id == R.id.nav_purchase) {
-            showProperty(PropertyType.BUY);
+            showProperty(EpropertyType.BUY);
         } else if (id == R.id.nav_home) {
-            showProperty(PropertyType.All);
+            showProperty(EpropertyType.All);
         } else if (id == R.id.nav_wishlist) {
             showWishlist();
         } else if (id == R.id.nav_logout) {
@@ -164,15 +178,17 @@ public class HomeBuyerActivity extends BaseActivity
         return true;
     }
 
-    private void showProperty(PropertyType propertyType) {
-        if (propertyType == PropertyType.All) {
+    private void showProperty(EpropertyType propertyType) {
+        if (propertyType == EpropertyType.All) {
 
-        } else if (propertyType == PropertyType.RENT) {
-
-        } else if (propertyType == PropertyType.BUY) {
-
+        } else if (propertyType == EpropertyType.RENT) {
+            dashboard = FragmentRent.newInstance();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, dashboard).commit();
+        } else if (propertyType == EpropertyType.BUY) {
+            dashboard = FragmentSell.newInstance();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, dashboard).commit();
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, FragmentRent.newInstance()).commit();
+
     }
 
     private void showWishlist() {

@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,10 +40,21 @@ public abstract class FragmentDashboard extends BaseFragment implements OnMapRea
     private GoogleMap mMap;
     private DatabaseReference propertyRef;
     public ArrayList<BoProperty> allItems;
+    private HashMap<String, BoProperty> allProperty;
     private boolean isMapReady;
+
+    public LatLng getCurrentLocation() {
+        return currentLocation;
+    }
+
+    private LatLng currentLocation;
 
     public FragmentDashboard() {
         // Required empty public constructor
+    }
+
+    public BoProperty getProperty(String propertyId) {
+        return allProperty.get(propertyId);
     }
 
     @Override
@@ -64,11 +76,12 @@ public abstract class FragmentDashboard extends BaseFragment implements OnMapRea
         mapFragment.getMapAsync(this);
 
         allItems = new ArrayList<>();
+        allProperty = new HashMap<>();
     }
 
     public abstract void fillData();
 
-    public void bindData(ArrayList<BoProperty> allItems) {
+    public void bindData(ArrayList<BoProperty> allItems, EpropertyType propertyType) {
         try {
             if (isMapReady && mMap != null) {
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -79,12 +92,19 @@ public abstract class FragmentDashboard extends BaseFragment implements OnMapRea
                         LatLng locProperty = new LatLng(item.latitude, item.longitude);
                         final MarkerOptions mark = new MarkerOptions()
                                 .position(locProperty)
-                                .title(item.ownerName)
+                                .title(item.propertyId)
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_green));
 //                        mark.snippet("Available in " + Common.convertLongToTimestamp(item.vacantDateLong).toString());
                         mMap.addMarker(mark);
-                        mMap.setInfoWindowAdapter(new AdapterPropertyInfo(parent,item));
+                        if (propertyType == EpropertyType.RENT)
+                            mMap.setInfoWindowAdapter(new AdapterRentInfo(parent));
+                        else if (propertyType == EpropertyType.SELL)
+                            mMap.setInfoWindowAdapter(new AdapterSellInfo(parent));
+                        else {
+                            //  Do nothing
+                        }
                         builder.include(locProperty);
+                        allProperty.put(item.propertyId, item);
                     }
                     LatLngBounds bounds = builder.build();
                     CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100);
@@ -114,6 +134,7 @@ public abstract class FragmentDashboard extends BaseFragment implements OnMapRea
 
                     @Override
                     public void onLocationUpdated(Location location) {
+                        currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
                         addMarker(location, "You are here");
                     }
                 });
