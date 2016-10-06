@@ -74,6 +74,13 @@
             android:value="@integer/google_play_services_version"
             tools:replace="android:value" />
 
+        <activity
+            android:name=".home.buyer.HomeBuyerActivity"
+            android:label="@string/title_activity_home_buyer"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".home.RoleChooserActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

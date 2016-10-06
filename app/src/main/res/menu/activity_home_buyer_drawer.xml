@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/sv_dashboard"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_rent"
+            android:icon="@drawable/sv_for_rent_nav"
+            android:title="Looking for Rent" />
+        <item
+            android:id="@+id/nav_purchase"
+            android:icon="@drawable/sv_property_add"
+            android:title="Looking for Purchase" />
+        <item
+            android:id="@+id/nav_wishlist"
+            android:icon="@drawable/ic_star"
+            android:title="Wishlist" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/sv_about"
+                android:title="About us" />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/sv_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/sv_logout"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

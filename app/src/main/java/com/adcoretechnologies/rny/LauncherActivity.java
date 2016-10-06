@@ -13,8 +13,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.adcoretechnologies.rny.auth.login.LoginActivity;
+import com.adcoretechnologies.rny.home.buyer.HomeBuyerActivity;
 import com.adcoretechnologies.rny.home.seller.HomeSellerActivity;
 import com.adcoretechnologies.rny.util.Const;
+import com.adcoretechnologies.rny.util.Pref;
 import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
@@ -149,12 +151,20 @@ public class LauncherActivity extends AppCompatActivity {
     }
 
     private void launchApp() {
-        Intent intent = new Intent(LauncherActivity.this, HomeSellerActivity.class);
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            intent = new Intent(LauncherActivity.this, LoginActivity.class);
+        Intent intent;
+        if (Const.IS_TEST) {
+            intent = new Intent(LauncherActivity.this, HomeBuyerActivity.class);
         } else {
-            if (Const.IS_TEST)
-                intent = new Intent(LauncherActivity.this, HomeSellerActivity.class);
+            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                intent = new Intent(LauncherActivity.this, LoginActivity.class);
+            } else {
+                boolean isSeller = Pref.ReadBoolean(getApplicationContext(), Const.PREF_IS_SELLER, false);
+                if (isSeller) {
+                    intent = new Intent(LauncherActivity.this, HomeSellerActivity.class);
+                } else {
+                    intent = new Intent(LauncherActivity.this, HomeBuyerActivity.class);
+                }
+            }
         }
 
         startActivity(intent);

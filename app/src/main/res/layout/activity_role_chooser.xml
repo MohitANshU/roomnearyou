@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sv_property">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_type"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/AppTheme.TextView.CardView.Title"
+            android:layout_marginTop="@dimen/space_x5"
+            android:gravity="center"
+            android:text="Use application as"
+            android:textSize="@dimen/font_x4"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnSeller"
+                style="@style/AppTheme.Button"
+                android:text="Owner/Seller" />
+
+            <Button
+                android:id="@+id/btnBuyer"
+                style="@style/AppTheme.Button"
+                android:text="Renter/Buyer" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--<ImageView-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:src="@drawable/sv_bg_house" />-->
+</RelativeLayout>

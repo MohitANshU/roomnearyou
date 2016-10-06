@@ -43,4 +43,5 @@
 
         "Happy Humanity...\n\n"</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_home_buyer">HomeBuyerActivity</string>
 </resources>

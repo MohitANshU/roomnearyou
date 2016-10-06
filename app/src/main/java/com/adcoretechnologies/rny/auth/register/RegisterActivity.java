@@ -11,7 +11,7 @@ import com.adcoretechnologies.rny.R;
 import com.adcoretechnologies.rny.auth.BoUser;
 import com.adcoretechnologies.rny.auth.login.LoginActivity;
 import com.adcoretechnologies.rny.core.base.BaseActivity;
-import com.adcoretechnologies.rny.home.seller.HomeSellerActivity;
+import com.adcoretechnologies.rny.home.RoleChooserActivity;
 import com.adcoretechnologies.rny.util.Common;
 import com.adcoretechnologies.rny.util.Const;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -155,7 +155,7 @@ public class RegisterActivity extends BaseActivity {
     }
 
     private void redirectToNextScreen() {
-        startActivity(new Intent(this, HomeSellerActivity.class));
+        startActivity(new Intent(this, RoleChooserActivity.class));
 
     }
 
