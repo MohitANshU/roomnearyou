@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.adcoretechnologies.rny.R;
 import com.adcoretechnologies.rny.core.base.BaseFragment;
 import com.adcoretechnologies.rny.core.components.FragmentDataLoader;
-import com.adcoretechnologies.rny.home.seller.HomeSellerActivity;
+import com.adcoretechnologies.rny.home.buyer.HomeBuyerActivity;
 import com.adcoretechnologies.rny.property.bo.BoPropertyMy;
 import com.adcoretechnologies.rny.util.Common;
 import com.adcoretechnologies.rny.util.Const;
@@ -37,7 +37,7 @@ public class FragmentWishlist extends BaseFragment {
     FragmentDataLoader fragmentLoader;
     private AdapterWishlist adapter;
     private DatabaseReference propertyRef;
-    private HomeSellerActivity parent;
+    private HomeBuyerActivity parent;
 
     public FragmentWishlist() {
         // Required empty public constructor
@@ -64,7 +64,7 @@ public class FragmentWishlist extends BaseFragment {
 
     @Override
     public void init() {
-        parent = (HomeSellerActivity) getActivity();
+        parent = (HomeBuyerActivity) getActivity();
         allItems = new ArrayList<>();
         adapter = new AdapterWishlist(allItems);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -88,7 +88,7 @@ public class FragmentWishlist extends BaseFragment {
             }
         });
 
-        propertyRef = FirebaseDatabase.getInstance().getReference(Const.FIREBASE_DB_USER_POSTS).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        propertyRef = FirebaseDatabase.getInstance().getReference(Const.FIREBASE_DB_USER_WISHLIST).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         fillData();
     }
 
@@ -106,8 +106,8 @@ public class FragmentWishlist extends BaseFragment {
 
             @Override
             public void onCancelled(DatabaseError error) {
-                toast("Failed to read property detail");
-                Common.logException(getContext(), "Failed to read property detail", error);
+                toast("Failed to read wishlist property");
+                Common.logException(getContext(), "Failed to read wishlist property detail", error);
             }
         });
     }
@@ -119,7 +119,7 @@ public class FragmentWishlist extends BaseFragment {
 
     private void updateViews(int size) {
         if (size == 0) {
-            fragmentLoader.setDataEmpty(null);
+            fragmentLoader.setDataEmpty("You don't have any property in your wishlist");
             recyclerView.setVisibility(View.GONE);
         } else {
             fragmentLoader.setDataAvailable();

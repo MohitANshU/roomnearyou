@@ -35,7 +35,7 @@ public class AdapterWishlist extends
                                          int viewType) {
         // create a new view
         context = parent.getContext();
-        View v = LayoutInflater.from(context).inflate(R.layout.row_property_my,
+        View v = LayoutInflater.from(context).inflate(R.layout.row_property_wishlist,
                 parent, false);
 
         ViewHolder vh = new ViewHolder(v);
@@ -47,6 +47,8 @@ public class AdapterWishlist extends
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final BoPropertyMy property = getItem(position);
+
+
         if (property.isRented()) {
             holder.tvPropertyName.setText(property.ownerName);
             holder.tvPostedOn.append(Common.convertLongToTimestamp(property.postedOnLong));

@@ -25,8 +25,10 @@ import com.adcoretechnologies.rny.profile.ProfileActivity;
 import com.adcoretechnologies.rny.property.bo.BoPost;
 import com.adcoretechnologies.rny.util.Common;
 import com.adcoretechnologies.rny.util.Const;
+import com.adcoretechnologies.rny.wishlist.FragmentWishlist;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -97,6 +99,7 @@ public class HomeBuyerActivity extends BaseActivity
         });
         tvName = ButterKnife.findById(headerView, R.id.tvName);
         tvEmail = ButterKnife.findById(headerView, R.id.tvEmail);
+        init();
 
         MenuItem menu = navigationView.getMenu().getItem(0);
         menu.setChecked(true);
@@ -105,7 +108,13 @@ public class HomeBuyerActivity extends BaseActivity
 
     @Override
     public void init() {
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            //TODO Redirect to login
+        } else {
+            tvName.setText(user.getDisplayName());
+            tvEmail.setText(user.getEmail());
+        }
     }
 
     @Override
@@ -199,15 +208,22 @@ public class HomeBuyerActivity extends BaseActivity
         } else if (propertyType == EpropertyType.RENT) {
             dashboard = FragmentRent.newInstance();
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, dashboard).commit();
+            updateTitle("Property for rent");
         } else if (propertyType == EpropertyType.BUY) {
             dashboard = FragmentSell.newInstance();
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, dashboard).commit();
+            updateTitle("Property for sell");
         }
 
     }
 
     private void showWishlist() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, FragmentWishlist.newInstance()).commit();
+        updateTitle("My Wishlist");
+    }
 
+    private void updateTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
     public void onEventMainThread(BOEventData eventData) {
@@ -267,6 +283,8 @@ public class HomeBuyerActivity extends BaseActivity
                 } else {
                     // Star the post and add self to stars
                     String wishlistId = wishlistRef.push().getKey();
+                    property.setPostedOn(Common.getTimestampString());
+                    property.setPostedOnLong(Common.getTimestampLong());
                     wishlistRef.child(wishlistId).setValue(property);
                     p.starCount = p.starCount + 1;
                     p.stars.put(getUid(), wishlistId);

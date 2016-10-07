@@ -22,20 +22,20 @@
                 android:layout_height="200dp"
                 android:src="@drawable/bg_sample" />
 
-            <LinearLayout style="@style/AppTheme.LinearLayout.CardView">
+            <!--<LinearLayout style="@style/AppTheme.LinearLayout.CardView">-->
 
-                <TextView
-                    android:id="@+id/tvHeats"
-                    style="@style/AppTheme.TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="right"
-                    android:background="@color/colorWhite"
-                    android:elevation="4dp"
-                    android:gravity="right"
-                    android:padding="2dp"
-                    android:text="{fou-crown} 0 Hits"
-                    android:textColor="@color/colorPrimary" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/tvHeats"-->
+                    <!--style="@style/AppTheme.TextView"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_gravity="right"-->
+                    <!--android:background="@color/colorWhite"-->
+                    <!--android:elevation="4dp"-->
+                    <!--android:gravity="right"-->
+                    <!--android:padding="2dp"-->
+                    <!--android:text="{fou-crown} 0 Hits"-->
+                    <!--android:textColor="@color/colorPrimary" />-->
+            <!--</LinearLayout>-->
 
 
             <android.support.percent.PercentRelativeLayout

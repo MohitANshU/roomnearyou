@@ -218,7 +218,7 @@ public class Common {
                     .load(url)
                     .placeholder(R.drawable.bg_sample3)
 //                    .resize(380, 380)
-                    .error(R.drawable.sv_image_placeholder)
+                    .error(R.drawable.bg_sample3)
                     .into(imageView);
         } catch (Exception ex) {
             log("Unable to load round image. message: " + ex.getMessage());

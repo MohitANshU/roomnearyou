@@ -44,6 +44,17 @@ public class BoPropertyMy{
     public List<String> images;
     public String heroImageUrl;
 
+    public void setStarCount(int starCount) {
+        this.starCount = starCount;
+    }
+
+    public void setHitCount(int hitCount) {
+        this.hitCount = hitCount;
+    }
+
+    public int starCount = 0;
+    public int hitCount = 0;
+
     public void setRoomCondition(String roomCondition) {
         this.roomCondition = roomCondition;
     }

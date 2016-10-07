@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BoProperty implements Serializable {
 
-    String defaultText = "Not Available";
+    private String defaultText = "Not Available";
 
     public boolean isRented() {
         if (postType.toLowerCase().equals("rent"))
@@ -36,13 +36,17 @@ public class BoProperty implements Serializable {
     }
 
     public String getAvailability() {
-        if (availability.equals("About to vacant")) {
-            if (TextUtils.isEmpty(vacantDate))
-                return defaultText;
-            else
-                return vacantDate;
-        } else
-            return TextUtils.isEmpty(availability) ? defaultText : availability;
+        try {
+            if (availability.equals("About to vacant")) {
+                if (TextUtils.isEmpty(vacantDate))
+                    return defaultText;
+                else
+                    return vacantDate;
+            } else
+                return TextUtils.isEmpty(availability) ? defaultText : availability;
+        } catch (Exception ex) {
+            return defaultText;
+        }
     }
 
     public String getVacantDate() {
