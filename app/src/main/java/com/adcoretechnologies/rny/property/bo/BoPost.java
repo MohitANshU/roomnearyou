@@ -11,7 +11,7 @@ import java.util.Map;
  */
 
 @IgnoreExtraProperties
-public class BoProperty {
+public class BoPost {
     public String propertyId;
     public String ownerName;
     public String ownerEmail;
@@ -26,11 +26,11 @@ public class BoProperty {
     public List<String> images;
     public int starCount = 0;
     public int hitCount = 0;
-    public Map<String, Boolean> stars = new HashMap<>();
+    public Map<String, String> stars = new HashMap<>();
     public Map<String, Boolean> hits = new HashMap<>();
 
 
-    public BoProperty(String ownerName, String ownerEmail, String ownerContactNumber, String locality, double latitude, double longitude, String city, String postedOn, long postedOnLong, List<String> images, int hitCount) {
+    public BoPost(String ownerName, String ownerEmail, String ownerContactNumber, String locality, double latitude, double longitude, String city, String postedOn, long postedOnLong, List<String> images, int hitCount) {
         this.ownerName = ownerName;
         this.ownerEmail = ownerEmail;
         this.ownerContactNumber = ownerContactNumber;
@@ -47,7 +47,7 @@ public class BoProperty {
         }
     }
 
-    public BoProperty() {
+    public BoPost() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 //

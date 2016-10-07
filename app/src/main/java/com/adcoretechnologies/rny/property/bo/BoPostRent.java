@@ -1,5 +1,6 @@
 package com.adcoretechnologies.rny.property.bo;
 
+import com.adcoretechnologies.rny.util.Common;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 
 @IgnoreExtraProperties
-public class BoPropertyRent extends BoProperty {
+public class BoPostRent extends BoPost {
     public String roomCondition;
     public String roomType;
     public String suitableFor;
@@ -24,7 +25,7 @@ public class BoPropertyRent extends BoProperty {
     public String floorNumber;
     public String rent;
 
-    public BoPropertyRent(String ownerName, String ownerEmail, String ownerContactNumber, String locality, double latitude, double longitude, String city, Date postedOn, List<String> images, int hitCount, String roomCondition, String roomType, String suitableFor, String forWhom, String availability, String vacantDate, String floor, String rent) {
+    public BoPostRent(String ownerName, String ownerEmail, String ownerContactNumber, String locality, double latitude, double longitude, String city, Date postedOn, List<String> images, int hitCount, String roomCondition, String roomType, String suitableFor, String forWhom, String availability, String vacantDate, String floor, String rent) {
         super(ownerName, ownerEmail, ownerContactNumber, locality, latitude, longitude, city, postedOn.toString(), postedOn.getTime(), images, hitCount);
         this.roomCondition = roomCondition;
         this.roomType = roomType;
@@ -36,7 +37,7 @@ public class BoPropertyRent extends BoProperty {
         this.rent = rent;
     }
 
-    public BoPropertyRent() {
+    public BoPostRent() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
@@ -68,6 +69,7 @@ public class BoPropertyRent extends BoProperty {
         result.put("stars", stars);
         result.put("hitCount", hitCount);
         result.put("hits", hits);
+        result.put("postedById", Common.getUid());
         return result;
     }
 }

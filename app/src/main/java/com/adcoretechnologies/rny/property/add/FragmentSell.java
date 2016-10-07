@@ -15,7 +15,7 @@ import com.adcoretechnologies.rny.R;
 import com.adcoretechnologies.rny.core.base.BaseFragment;
 import com.adcoretechnologies.rny.core.components.ComponentItemSelector;
 import com.adcoretechnologies.rny.other.BOEventData;
-import com.adcoretechnologies.rny.property.bo.BoPropertySell;
+import com.adcoretechnologies.rny.property.bo.BoPostSell;
 import com.adcoretechnologies.rny.util.Common;
 import com.adcoretechnologies.rny.util.Const;
 import com.google.firebase.auth.FirebaseAuth;
@@ -142,7 +142,7 @@ public class FragmentSell extends BaseFragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         String key = mDatabase.child(Const.FIREBASE_DB_POST_SELL).push().getKey();
-        BoPropertySell post = new BoPropertySell(ownerName, user.getEmail(), contactNumber, locality, latitude, longitude, "Delhi", Common.getTimestamp(), allUploadedImageUrl, 1, houseCondition, houseType, propertyType, description, area, floorNumber, sellingPrice, isNegotiable.isChecked());
+        BoPostSell post = new BoPostSell(ownerName, user.getEmail(), contactNumber, locality, latitude, longitude, "Delhi", Common.getTimestamp(), allUploadedImageUrl, 1, houseCondition, houseType, propertyType, description, area, floorNumber, sellingPrice, isNegotiable.isChecked());
         Map<String, Object> postValues = post.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();

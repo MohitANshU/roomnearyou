@@ -14,5 +14,6 @@ public class Const {
     public static final String FIREBASE_DB_POST_SELL = "post-sell";
     public static final String PREF_IS_SELLER = "isSeller";
     public static final String ARG_PROPERTY = "proerty";
+    public static final String FIREBASE_DB_USER_WISHLIST = "user-wishlist";
     public static boolean IS_TEST = false;
 }

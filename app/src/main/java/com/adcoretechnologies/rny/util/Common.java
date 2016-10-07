@@ -169,6 +169,10 @@ public class Common {
         }
     }
 
+    public static String getUid() {
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+
 
     private static class RoundedTransformation implements com.squareup.picasso.Transformation {
         private final int radius;

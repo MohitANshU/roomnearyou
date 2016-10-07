@@ -1,5 +1,6 @@
 package com.adcoretechnologies.rny.property.bo;
 
+import com.adcoretechnologies.rny.util.Common;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 
 @IgnoreExtraProperties
-public class BoPropertySell extends BoProperty {
+public class BoPostSell extends BoPost {
     public String houseCondition;
     public String houseType;
     public String propertyType;
@@ -23,7 +24,7 @@ public class BoPropertySell extends BoProperty {
     public String sellingPrice;
     public boolean isNegotiable;
 
-    public BoPropertySell(String ownerName, String ownerEmail, String ownerContactNumber, String locality, double latitude, double longitude, String city, Date postedOn, List<String> images, int hitCount, String houseCondition, String houseType, String propertyType, String description, String area, String floorNumber, String sellingPrice, boolean isNegotiable) {
+    public BoPostSell(String ownerName, String ownerEmail, String ownerContactNumber, String locality, double latitude, double longitude, String city, Date postedOn, List<String> images, int hitCount, String houseCondition, String houseType, String propertyType, String description, String area, String floorNumber, String sellingPrice, boolean isNegotiable) {
         super(ownerName, ownerEmail, ownerContactNumber, locality, latitude, longitude, city, postedOn.toString(), postedOn.getTime(), images, hitCount);
         this.houseCondition = houseCondition;
         this.houseType = houseType;
@@ -35,7 +36,7 @@ public class BoPropertySell extends BoProperty {
         this.isNegotiable = isNegotiable;
     }
 
-    public BoPropertySell() {
+    public BoPostSell() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
@@ -66,6 +67,7 @@ public class BoPropertySell extends BoProperty {
         result.put("stars", stars);
         result.put("hitCount", hitCount);
         result.put("hits", hits);
+        result.put("postedById", Common.getUid());
         return result;
     }
 }

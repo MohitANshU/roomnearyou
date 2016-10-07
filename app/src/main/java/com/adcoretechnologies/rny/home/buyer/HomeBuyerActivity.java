@@ -22,10 +22,17 @@ import com.adcoretechnologies.rny.core.base.BaseActivity;
 import com.adcoretechnologies.rny.other.AboutActivity;
 import com.adcoretechnologies.rny.other.BOEventData;
 import com.adcoretechnologies.rny.profile.ProfileActivity;
+import com.adcoretechnologies.rny.property.bo.BoPost;
 import com.adcoretechnologies.rny.util.Common;
+import com.adcoretechnologies.rny.util.Const;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 
 import java.util.Locale;
 
@@ -224,8 +231,8 @@ public class HomeBuyerActivity extends BaseActivity
                 break;
             }
             case BOEventData.EVENT_INFO_CLICK_DIRECTION: {
-                BoProperty item= (BoProperty) object;
-                String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", item.getLatitude(),item.getLongitude());
+                BoProperty item = (BoProperty) object;
+                String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", item.getLatitude(), item.getLongitude());
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 startActivity(intent);
                 bottomSheetDialogFragment.dismiss();
@@ -233,14 +240,65 @@ public class HomeBuyerActivity extends BaseActivity
             }
             case BOEventData.EVENT_INFO_CLICK_WISHLIST: {
                 bottomSheetDialogFragment.dismiss();
-                addToWishlist(FirebaseAuth.getInstance().getCurrentUser(),data);
+                addToWishlist("YZgHZDpOUEe5f7qmkeF3hd8hCAg1", data, (BoProperty) object);
                 break;
             }
         }
     }
 
-    private void addToWishlist(FirebaseUser currentUser, String propertyId) {
+    private void addToWishlist(String postedById, String propertyId, final BoProperty property) {
+        DatabaseReference postRef = FirebaseDatabase.getInstance().getReference().child(Const.FIREBASE_DB_USER_POSTS).child(postedById).child(propertyId);
+        final DatabaseReference wishlistRef = FirebaseDatabase.getInstance().getReference().child(Const.FIREBASE_DB_USER_WISHLIST).child(getUid());
+        postRef.runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                BoPost p = mutableData.getValue(BoPost.class);
+                if (p == null) {
+                    return Transaction.success(mutableData);
+                }
 
+                if (p.stars.containsKey(getUid())) {
+                    String wishlistId = p.stars.get(getUid());
+                    wishlistRef.child(wishlistId).removeValue();
+                    // Unstar the post and remove self from stars
+                    p.starCount = p.starCount - 1;
+                    p.stars.remove(getUid());
+
+                } else {
+                    // Star the post and add self to stars
+                    String wishlistId = wishlistRef.push().getKey();
+                    wishlistRef.child(wishlistId).setValue(property);
+                    p.starCount = p.starCount + 1;
+                    p.stars.put(getUid(), wishlistId);
+
+
+                }
+                if (p.hits.containsKey(getUid())) {
+                    p.hitCount = p.hitCount - 1;
+                    p.hits.remove(getUid());
+                } else {
+                    p.hitCount = p.hitCount + 1;
+                    p.hits.put(getUid(), true);
+                }
+
+                // Set value and report transaction success
+                mutableData.setValue(p);
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b,
+                                   DataSnapshot dataSnapshot) {
+                // Transaction completed
+                if (databaseError == null)
+                    toast("Your wishlist has been updated successfully");
+                else log("postTransaction:onComplete:" + databaseError);
+            }
+        });
+    }
+
+    private String getUid() {
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
 

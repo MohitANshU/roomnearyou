@@ -15,7 +15,7 @@ import com.adcoretechnologies.rny.R;
 import com.adcoretechnologies.rny.core.base.BaseFragment;
 import com.adcoretechnologies.rny.core.components.ComponentItemSelector;
 import com.adcoretechnologies.rny.other.BOEventData;
-import com.adcoretechnologies.rny.property.bo.BoPropertyRent;
+import com.adcoretechnologies.rny.property.bo.BoPostRent;
 import com.adcoretechnologies.rny.util.Common;
 import com.adcoretechnologies.rny.util.Const;
 import com.google.firebase.auth.FirebaseAuth;
@@ -167,7 +167,7 @@ public class FragmentRent extends BaseFragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         String key = mDatabase.child(Const.FIREBASE_DB_POST_RENT).push().getKey();
-        BoPropertyRent post = new BoPropertyRent(ownerName, user.getEmail(), contactNumber, locality, latitude, longitude, "Delhi", Common.getTimestamp(), allUploadedImageUrl, 1, roomCondition, roomType, suitableFor, forWhom, availability, vacantDate, floorNumber, rent);
+        BoPostRent post = new BoPostRent(ownerName, user.getEmail(), contactNumber, locality, latitude, longitude, "Delhi", Common.getTimestamp(), allUploadedImageUrl, 1, roomCondition, roomType, suitableFor, forWhom, availability, vacantDate, floorNumber, rent);
         Map<String, Object> postValues = post.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
@@ -180,7 +180,6 @@ public class FragmentRent extends BaseFragment {
                 hideDialog();
 
                 if (databaseError == null) {
-
                     redirectToNextScreen();
                 } else {
                     toast("Error on saving property details. Please check all your input");

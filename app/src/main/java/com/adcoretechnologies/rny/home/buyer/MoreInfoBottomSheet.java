@@ -77,6 +77,6 @@ public class MoreInfoBottomSheet extends BottomSheetDialogFragment {
 
     @OnClick(R.id.llWishlist)
     public void onAddToWishlist() {
-        EventBus.getDefault().post(new BOEventData(BOEventData.EVENT_INFO_CLICK_WISHLIST,0,item.getPropertyId()));
+        EventBus.getDefault().post(new BOEventData(BOEventData.EVENT_INFO_CLICK_WISHLIST,0,item.getPropertyId(),item));
     }
 }
