@@ -62,6 +62,10 @@ public class BoPropertySell extends BoProperty {
         result.put("postType", "sell");
         result.put("heroImageUrl", heroImageUrl);
         result.put("images", images);
+        result.put("starCount", starCount);
+        result.put("stars", stars);
+        result.put("hitCount", hitCount);
+        result.put("hits", hits);
         return result;
     }
 }

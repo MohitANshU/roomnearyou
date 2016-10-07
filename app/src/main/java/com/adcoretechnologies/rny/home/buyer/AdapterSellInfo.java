@@ -1,5 +1,8 @@
 package com.adcoretechnologies.rny.home.buyer;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,7 +70,7 @@ public class AdapterSellInfo implements GoogleMap.InfoWindowAdapter {
 
     private void render(View mWindow, String propertyId) {
         ButterKnife.bind(this, mWindow);
-        BoProperty item = parent.getPropertyById(propertyId);
+        final BoProperty item = parent.getPropertyById(propertyId);
         if (item != null) {
             Common.showBigImage(parent, ivPropertyImage, item.heroImageUrl);
             tvPropertyName.setText(item.getOwnerName());
@@ -93,6 +96,16 @@ public class AdapterSellInfo implements GoogleMap.InfoWindowAdapter {
                 ivDealType.setImageResource(R.drawable.sv_for_rent);
             } else {
                 ivDealType.setImageResource(R.drawable.sv_for_sale);
+            }
+            if (!TextUtils.isEmpty(item.getOwnerContactNumber())) {
+                tvCall.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:" + item.getOwnerContactNumber()));
+                        parent.startActivity(intent);
+                    }
+                });
             }
         } else {
             parent.toast("Unable to fetch property detail");

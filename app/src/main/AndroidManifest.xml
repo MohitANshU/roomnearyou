@@ -77,10 +77,11 @@
         <activity
             android:name=".home.buyer.HomeBuyerActivity"
             android:label="@string/title_activity_home_buyer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".home.RoleChooserActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TestActivity"></activity>
     </application>
 
 </manifest>

@@ -2,7 +2,9 @@ package com.adcoretechnologies.rny.property.bo;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Irfan on 06/09/16.
@@ -22,6 +24,11 @@ public class BoProperty {
     public String postedOn;
     public long postedOnLong;
     public List<String> images;
+    public int starCount = 0;
+    public int hitCount = 0;
+    public Map<String, Boolean> stars = new HashMap<>();
+    public Map<String, Boolean> hits = new HashMap<>();
+
 
     public BoProperty(String ownerName, String ownerEmail, String ownerContactNumber, String locality, double latitude, double longitude, String city, String postedOn, long postedOnLong, List<String> images, int hitCount) {
         this.ownerName = ownerName;
@@ -39,8 +46,6 @@ public class BoProperty {
             this.heroImageUrl = images.get(0);
         }
     }
-
-    public int hitCount = 0;
 
     public BoProperty() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)

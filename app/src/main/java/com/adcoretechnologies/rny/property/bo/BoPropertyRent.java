@@ -64,6 +64,10 @@ public class BoPropertyRent extends BoProperty {
         result.put("postType", "rent");
         result.put("heroImageUrl", heroImageUrl);
         result.put("images", images);
+        result.put("starCount", starCount);
+        result.put("stars", stars);
+        result.put("hitCount", hitCount);
+        result.put("hits", hits);
         return result;
     }
 }

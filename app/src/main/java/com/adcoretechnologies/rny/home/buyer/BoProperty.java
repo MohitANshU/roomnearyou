@@ -2,13 +2,14 @@ package com.adcoretechnologies.rny.home.buyer;
 
 import android.text.TextUtils;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Irfan on 01/10/16.
  */
 
-public class BoProperty {
+public class BoProperty implements Serializable {
 
     String defaultText = "Not Available";
 
@@ -283,4 +284,5 @@ public class BoProperty {
     public void setHeroImageUrl(String heroImageUrl) {
         this.heroImageUrl = heroImageUrl;
     }
+
 }

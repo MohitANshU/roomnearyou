@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.adcoretechnologies.rny.R;
 import com.adcoretechnologies.rny.core.base.BaseFragment;
+import com.adcoretechnologies.rny.other.BOEventData;
 import com.adcoretechnologies.rny.util.Common;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DatabaseReference;
 
@@ -27,6 +29,7 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 import io.nlopez.smartlocation.OnLocationUpdatedListener;
 import io.nlopez.smartlocation.SmartLocation;
 
@@ -103,6 +106,12 @@ public abstract class FragmentDashboard extends BaseFragment implements OnMapRea
                         else {
                             //  Do nothing
                         }
+                        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                            @Override
+                            public void onInfoWindowClick(Marker marker) {
+                                handleInfoClick(marker);
+                            }
+                        });
                         builder.include(locProperty);
                         allProperty.put(item.propertyId, item);
                     }
@@ -115,6 +124,14 @@ public abstract class FragmentDashboard extends BaseFragment implements OnMapRea
             }
         } catch (Exception ex) {
             Common.logException(getContext(), "Error on creating marker", ex, null);
+        }
+    }
+
+    private void handleInfoClick(Marker marker) {
+        String title = marker.getTitle();
+        BoProperty item = allProperty.get(title);
+        if (item != null) {
+            EventBus.getDefault().post(new BOEventData(BOEventData.EVENT_INFO_CLICK, 0, title, item));
         }
     }
 

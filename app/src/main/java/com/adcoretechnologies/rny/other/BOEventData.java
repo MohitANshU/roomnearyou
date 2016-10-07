@@ -10,6 +10,10 @@ public class BOEventData {
     public static final int EVENT_POST_DETAIL = 4;
     public static final int EVENT_POST_EDIT = 5;
     public static final int EVENT_PROPERTY_SAVED = 6;
+    public static final int EVENT_INFO_CLICK = 7;
+    public static final int EVENT_INFO_CLICK_CALL = 8;
+    public static final int EVENT_INFO_CLICK_DIRECTION = 9;
+    public static final int EVENT_INFO_CLICK_WISHLIST = 10;
 
     public final int eventType;
 

@@ -1,6 +1,7 @@
 package com.adcoretechnologies.rny.home.buyer;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -24,6 +25,9 @@ import com.adcoretechnologies.rny.profile.ProfileActivity;
 import com.adcoretechnologies.rny.util.Common;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +36,7 @@ import de.greenrobot.event.EventBus;
 public class HomeBuyerActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final int BOTTOM_SHEET_PEEK_HEIGHT = 600;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.fab)
@@ -44,6 +49,7 @@ public class HomeBuyerActivity extends BaseActivity
     private TextView tvName;
     private TextView tvEmail;
     private FragmentDashboard dashboard;
+    private MoreInfoBottomSheet bottomSheetDialogFragment;
 
 
     @Override
@@ -161,8 +167,10 @@ public class HomeBuyerActivity extends BaseActivity
             startActivity(new Intent(this, AboutActivity.class));
             return true;
         } else if (id == R.id.nav_rent) {
+//            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             showProperty(EpropertyType.RENT);
         } else if (id == R.id.nav_purchase) {
+//            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             showProperty(EpropertyType.BUY);
         } else if (id == R.id.nav_home) {
             showProperty(EpropertyType.All);
@@ -203,12 +211,38 @@ public class HomeBuyerActivity extends BaseActivity
         Object object = eventData.getObject();
         switch (eventType) {
 
-            case BOEventData.EVENT_POST_DETAIL: {
-
+            case BOEventData.EVENT_INFO_CLICK: {
+                bottomSheetDialogFragment = MoreInfoBottomSheet.newInstance((BoProperty) object);
+                bottomSheetDialogFragment.show(getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+                break;
+            }
+            case BOEventData.EVENT_INFO_CLICK_CALL: {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + data));
+                startActivity(intent);
+                bottomSheetDialogFragment.dismiss();
+                break;
+            }
+            case BOEventData.EVENT_INFO_CLICK_DIRECTION: {
+                BoProperty item= (BoProperty) object;
+                String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", item.getLatitude(),item.getLongitude());
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                startActivity(intent);
+                bottomSheetDialogFragment.dismiss();
+                break;
+            }
+            case BOEventData.EVENT_INFO_CLICK_WISHLIST: {
+                bottomSheetDialogFragment.dismiss();
+                addToWishlist(FirebaseAuth.getInstance().getCurrentUser(),data);
                 break;
             }
         }
     }
+
+    private void addToWishlist(FirebaseUser currentUser, String propertyId) {
+
+    }
+
 
     private void performLogout() {
         FirebaseAuth.getInstance().signOut();
