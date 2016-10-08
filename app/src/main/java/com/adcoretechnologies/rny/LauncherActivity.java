@@ -26,6 +26,7 @@ public class LauncherActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_EXTERNAL_STORAGE = 1;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 2;
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_PHONE_STATE = 3;
 
     @BindView(R.id.llParent)
     LinearLayout llParent;
@@ -78,7 +79,7 @@ public class LauncherActivity extends AppCompatActivity {
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            launchApp();
+            askReadPhoneStatePermission();
         } else {
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -99,6 +100,36 @@ public class LauncherActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
+
+            }
+        }
+    }
+
+    private void askReadPhoneStatePermission() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_PHONE_STATE);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            launchApp();
+        } else {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_PHONE_STATE)) {
+                Snackbar snackbar = Snackbar
+                        .make(llParent, "You must provide permission to allow app functioning correctly", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ActivityCompat.requestPermissions(LauncherActivity.this,
+                                        new String[]{Manifest.permission.READ_PHONE_STATE},
+                                        MY_PERMISSIONS_REQUEST_ACCESS_PHONE_STATE);
+                            }
+                        });
+                snackbar.show();
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_PHONE_STATE},
+                        MY_PERMISSIONS_REQUEST_ACCESS_PHONE_STATE);
 
             }
         }
@@ -131,7 +162,7 @@ public class LauncherActivity extends AppCompatActivity {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    launchApp();
+                    askReadPhoneStatePermission();
                 } else {
                     Snackbar snackbar = Snackbar
                             .make(llParent, "You must provide permission to allow app to function correctly", Snackbar.LENGTH_INDEFINITE)
@@ -147,13 +178,33 @@ public class LauncherActivity extends AppCompatActivity {
                 }
                 return;
             }
+
+            case MY_PERMISSIONS_REQUEST_ACCESS_PHONE_STATE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    launchApp();
+                } else {
+                    Snackbar snackbar = Snackbar
+                            .make(llParent, "You must provide permission to allow app to function correctly", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("Ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    ActivityCompat.requestPermissions(LauncherActivity.this,
+                                            new String[]{Manifest.permission.READ_PHONE_STATE},
+                                            MY_PERMISSIONS_REQUEST_ACCESS_PHONE_STATE);
+                                }
+                            });
+                    snackbar.show();
+                }
+                return;
+            }
         }
     }
 
     private void launchApp() {
         Intent intent;
         if (Const.IS_TEST) {
-            intent = new Intent(LauncherActivity.this, HomeBuyerActivity.class);
+            intent = new Intent(LauncherActivity.this, LoginActivity.class);
         } else {
             if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                 intent = new Intent(LauncherActivity.this, LoginActivity.class);

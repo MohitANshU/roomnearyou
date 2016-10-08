@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_margin="@dimen/space_x2"
+        android:layout_margin="@dimen/space_x1"
         android:orientation="vertical">
 
 
@@ -24,14 +24,25 @@
                 android:inputType="textCapWords" />
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout style="@style/AppTheme.TextInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etContactNumber"
+                style="@style/AppTheme.EditText"
+                android:drawableLeft="@drawable/sv_phone"
+                android:hint="Contact Number"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
-                style="@style/AppTheme.TextView"
+                style="@style/AppTheme.TextView.Wrap"
                 android:layout_width="wrap_content"
                 android:drawableLeft="@drawable/sv_gender"
                 android:gravity="left|center"
@@ -42,13 +53,10 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/space_x0"
-                android:paddingLeft="@dimen/space_x3"
-                android:paddingRight="@dimen/space_x3"
-                android:paddingTop="@dimen/space_x1">
+                android:orientation="horizontal">
 
                 <RadioButton
+                    android:checked="true"
                     android:id="@+id/rbMale"
                     style="@style/AppTheme.Radio"
                     android:text="Male" />
@@ -81,27 +89,18 @@
         </android.support.design.widget.TextInputLayout>
 
         <TextView
-            style="@style/AppTheme.TextView"
+            style="@style/AppTheme.TextView.Wrap"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:text="Password should be minimum 6 characters"
+            android:text="Password should be of minimum 6 characters"
             android:textColor="@color/colorAccent2"
             android:textSize="@dimen/font_x1" />
-
-        <android.support.design.widget.TextInputLayout style="@style/AppTheme.TextInputLayout">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/etContactNumber"
-                style="@style/AppTheme.EditText"
-                android:drawableLeft="@drawable/ic_smartphone"
-                android:hint="Contact Number"
-                android:inputType="number" />
-        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:id="@+id/tvLocality"
             style="@style/AppTheme.TextView"
             android:layout_marginBottom="@dimen/space_x2"
-            android:layout_marginTop="@dimen/space_x2"
+            android:layout_marginTop="@dimen/space_x0"
             android:drawableLeft="@drawable/ic_locality"
             android:gravity="left"
             android:text="Touch to select locality"

@@ -1,9 +1,11 @@
 package com.adcoretechnologies.rny.auth.register;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.text.TextUtils;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -14,6 +16,10 @@ import com.adcoretechnologies.rny.core.base.BaseActivity;
 import com.adcoretechnologies.rny.home.RoleChooserActivity;
 import com.adcoretechnologies.rny.util.Common;
 import com.adcoretechnologies.rny.util.Const;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,6 +36,7 @@ import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity {
 
+    private static final int PLACE_PICKER_REQUEST = 101;
     @BindView(R.id.etName)
     TextInputEditText etName;
     @BindView(R.id.rbMale)
@@ -90,11 +97,44 @@ public class RegisterActivity extends BaseActivity {
 
     @OnClick(R.id.btnRegister)
     public void onRegister() {
+        String defaultError="Please provide input";
+
         String name = etName.getText().toString();
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
+        if (TextUtils.isEmpty(name)) {
+            etName.setError(defaultError);
+            return;
+        }
         String contactNumber = etContactNumber.getText().toString();
+        if (TextUtils.isEmpty(contactNumber)) {
+            etContactNumber.setError(defaultError);
+            return;
+        } else if (contactNumber.length() != 10) {
+            etContactNumber.setError("Contact number must be of 10 digit");
+            return;
+        }
+
+        String email = etEmail.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            etEmail.setError(defaultError);
+            return;
+        }
+
+        String password = etPassword.getText().toString();
+        if (TextUtils.isEmpty(name)) {
+            etPassword.setError(defaultError);
+            return;
+        } else if (password.length() < 6) {
+            etPassword.setError("Password must be of 6 digits");
+            return;
+        }
+
+
         String locality = tvLocality.getText().toString();
+        if (TextUtils.isEmpty(locality) || latitude == 0.0 || longitude == 0.0) {
+            toast("Please select your locality");
+            return;
+        }
+
         String gender = "M";
         if (rbFemale.isChecked())
             gender = "F";
@@ -122,7 +162,7 @@ public class RegisterActivity extends BaseActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                                DatabaseReference userRef = database.getReference(Const.FIREBASE_DB_USER);
+                                                DatabaseReference userRef = database.getReference(Const.FIREBASE_DB_USER).child(user.getUid());
                                                 BoUser boUser = new BoUser(name, gender, email, contactNumber, locality, latitude, longitude, imei);
                                                 userRef.setValue(boUser, new DatabaseReference.CompletionListener() {
                                                     @Override
@@ -157,6 +197,48 @@ public class RegisterActivity extends BaseActivity {
     private void redirectToNextScreen() {
         startActivity(new Intent(this, RoleChooserActivity.class));
 
+    }
+
+    @OnClick(R.id.tvLocality)
+    public void openPlacePicker() {
+        PlacePicker.IntentBuilder picker = new PlacePicker.IntentBuilder();
+        try {
+            startActivityForResult(picker.build(this), PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            toast("You need to update google play service in order to use this feature");
+            updateStatus("You need to update google play service in order to use this feature");
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            toast("This feature requires Google play service to work.");
+            updateStatus("This feature requires Google play service to work.");
+            e.printStackTrace();
+        }
+    }
+
+    private void updateStatus(String message) {
+        toast(message);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        switch (requestCode) {
+            case PLACE_PICKER_REQUEST: {
+                if (resultCode == Activity.RESULT_OK) {
+                    Place place = PlacePicker.getPlace(imageReturnedIntent, this);
+                    updatePlace(place);
+                } else
+                    updateStatus("Free limit of choosing a place has been exhausted.");
+            }
+        }
+    }
+
+    public void updatePlace(Place place) {
+        if (place != null) {
+            tvLocality.setText(place.getAddress());
+            latitude = place.getLatLng().latitude;
+            longitude = place.getLatLng().longitude;
+
+        }
     }
 
     @OnClick(R.id.tvLogin)

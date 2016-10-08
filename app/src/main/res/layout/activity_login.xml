@@ -25,9 +25,9 @@
                 android:id="@+id/etUserName"
 
                 style="@style/AppTheme.EditText"
-                android:drawableLeft="@drawable/ic_smartphone"
-                android:hint="Mobile number/Email"
-                android:inputType="text" />
+                android:drawableLeft="@drawable/ic_email"
+                android:hint="Email id"
+                android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout style="@style/AppTheme.TextInputLayout">

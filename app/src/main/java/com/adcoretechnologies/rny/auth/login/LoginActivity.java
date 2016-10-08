@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.adcoretechnologies.rny.R;
+import com.adcoretechnologies.rny.auth.BoUser;
 import com.adcoretechnologies.rny.auth.register.RegisterActivity;
 import com.adcoretechnologies.rny.core.base.BaseActivity;
 import com.adcoretechnologies.rny.home.RoleChooserActivity;
@@ -16,6 +18,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,7 +68,7 @@ public class LoginActivity extends BaseActivity {
         };
 
         if (Const.IS_TEST) {
-            etUserName.setText("Email@gmail.com");
+            etUserName.setText("9874563211");
             etPassword.setText("123456");
         }
     }
@@ -70,7 +78,36 @@ public class LoginActivity extends BaseActivity {
         String username = etUserName.getText().toString();
         String password = etPassword.getText().toString();
 
+        if (TextUtils.isEmpty(username)) {
+            etUserName.setError("Please provide username");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            etPassword.setError("Please provide password");
+            return;
+        } else if (password.length() < 6) {
+            etPassword.setError("Password must be greater than 6 digits");
+            return;
+        }
         performLogin(username, password);
+//        lookupEmailId(username, password);
+    }
+
+    private void lookupEmailId(String contactNumber, final String password) {
+        showProgressDialog("Performing login", "Please wait...");
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(Const.FIREBASE_DB_USER);
+        Query emailQuery = userRef.orderByChild("contactNumber").equalTo(contactNumber, "contactNumber");
+        emailQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                BoUser user = dataSnapshot.getValue(BoUser.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void performLogin(String username, String password) {
