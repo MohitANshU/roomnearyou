@@ -150,9 +150,21 @@ public class Common {
         try {
             Picasso.with(activity)
                     .load(url)
-                    .placeholder(R.mipmap.ic_launcher)
                     .resize(200, 200)
-                    .error(R.mipmap.ic_launcher)
+                    .transform(new RoundedTransformation(100, 4))
+                    .into(imageView);
+        } catch (Exception ex) {
+            log("Unable to load round image. message: " + ex.getMessage());
+        }
+    }
+
+    public static void showSmallRoundImage(BaseActivity activity, ImageView imageView, String url) {
+        if (url.isEmpty())
+            url = "http://no-image.jpg";
+        try {
+            Picasso.with(activity)
+                    .load(url)
+                    .resize(150, 150)
                     .transform(new RoundedTransformation(100, 4))
                     .into(imageView);
         } catch (Exception ex) {

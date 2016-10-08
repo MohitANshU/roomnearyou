@@ -169,6 +169,16 @@ public class BoProperty implements Serializable {
     public double longitude;
     public String city;
     public String postedOn;
+
+    public String getPostedById() {
+        return postedById;
+    }
+
+    public void setPostedById(String postedById) {
+        this.postedById = postedById;
+    }
+
+    public String postedById;
     public long postedOnLong;
     public List<String> images;
     public String heroImageUrl;

@@ -99,6 +99,7 @@ public class HomeBuyerActivity extends BaseActivity
         });
         tvName = ButterKnife.findById(headerView, R.id.tvName);
         tvEmail = ButterKnife.findById(headerView, R.id.tvEmail);
+        ivProfilePic = ButterKnife.findById(headerView, R.id.ivProfilePic);
         init();
 
         MenuItem menu = navigationView.getMenu().getItem(0);
@@ -114,6 +115,7 @@ public class HomeBuyerActivity extends BaseActivity
         } else {
             tvName.setText(user.getDisplayName());
             tvEmail.setText(user.getEmail());
+            Common.showSmallRoundImage(this, ivProfilePic, user.getPhotoUrl().toString());
         }
     }
 
@@ -256,7 +258,9 @@ public class HomeBuyerActivity extends BaseActivity
             }
             case BOEventData.EVENT_INFO_CLICK_WISHLIST: {
                 bottomSheetDialogFragment.dismiss();
-                addToWishlist("YZgHZDpOUEe5f7qmkeF3hd8hCAg1", data, (BoProperty) object);
+                BoProperty property = (BoProperty) object;
+
+                addToWishlist(property.postedById, data, property);
                 break;
             }
         }

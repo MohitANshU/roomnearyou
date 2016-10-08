@@ -46,7 +46,7 @@
                         <RadioButton
                             android:id="@+id/rbSelf"
                             style="@style/AppTheme.Radio.Post"
-                            android:text="Self" />
+                            android:text="Owner" />
 
                         <RadioButton
                             android:id="@+id/rbBuilder"

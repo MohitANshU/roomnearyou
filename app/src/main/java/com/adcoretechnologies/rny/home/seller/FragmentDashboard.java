@@ -1,8 +1,10 @@
 package com.adcoretechnologies.rny.home.seller;
 
 
+import android.content.DialogInterface;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +49,7 @@ public class FragmentDashboard extends BaseFragment implements OnMapReadyCallbac
     private DatabaseReference propertyRef;
     private ArrayList<BoPropertyMy> allItems;
     private boolean isMapReady;
+    private AlertDialog dialog;
 
     public FragmentDashboard() {
         // Required empty public constructor
@@ -120,13 +123,46 @@ public class FragmentDashboard extends BaseFragment implements OnMapReadyCallbac
                     LatLngBounds bounds = builder.build();
                     CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100);
                     mMap.animateCamera(cu);
-                } else updateStatus("Seems you have not added any property yet");
+                } else {
+                    offerToAddProperty();
+                }
             } else {
                 updateStatus("Map is not rendered properly. Can't show data");
             }
         } catch (Exception ex) {
             Common.logException(getContext(), "Error on creating marker", ex, null);
         }
+    }
+
+    private void offerToAddProperty() {
+        if (dialog == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(parent, R.style.AppTheme_Dialog_Alert);
+            builder.setTitle("No property to show");
+            builder.setMessage("Seems you have not added any property yet. Would you like to add it now?");
+
+            String positiveText = getString(android.R.string.ok);
+            builder.setPositiveButton(positiveText,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            parent.openAddProperty();
+                        }
+                    });
+
+            String negativeText = getString(android.R.string.cancel);
+            builder.setNegativeButton(negativeText,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // negative button logic
+                        }
+                    });
+
+            dialog = builder.create();
+        }
+        // display dialog
+        dialog.show();
     }
 
     private void updateStatus(String message) {

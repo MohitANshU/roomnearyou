@@ -141,7 +141,7 @@
                         <RadioButton
                             android:id="@+id/rbBoth"
                             style="@style/AppTheme.Radio.Post"
-                            android:text="Both" />
+                            android:text="Boys/Girls" />
                     </RadioGroup>
 
                     <View style="@style/AppTheme.Divider"></View>
@@ -178,7 +178,7 @@
                         <RadioButton
                             android:id="@+id/cbBoth"
                             style="@style/AppTheme.Radio.Post"
-                            android:text="Both" />
+                            android:text="Family/Bachelor" />
                     </RadioGroup>
 
                     <View style="@style/AppTheme.Divider"></View>
@@ -203,6 +203,11 @@
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/rbOccupied"
+                            style="@style/AppTheme.Radio.Post"
+                            android:text="Occupied" />
+
+                        <RadioButton
                             android:id="@+id/rbVacant"
                             style="@style/AppTheme.Radio.Post"
                             android:text="Vacant" />
@@ -212,10 +217,7 @@
                             style="@style/AppTheme.Radio.Post"
                             android:text="About to vacant" />
 
-                        <RadioButton
-                            android:id="@+id/rbOccupied"
-                            style="@style/AppTheme.Radio.Post"
-                            android:text="Occupied" />
+
                     </RadioGroup>
 
                     <View style="@style/AppTheme.Divider"></View>

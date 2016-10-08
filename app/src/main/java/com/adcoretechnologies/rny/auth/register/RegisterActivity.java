@@ -201,6 +201,7 @@ public class RegisterActivity extends BaseActivity {
 
     @OnClick(R.id.tvLocality)
     public void openPlacePicker() {
+        toast("Please wait...");
         PlacePicker.IntentBuilder picker = new PlacePicker.IntentBuilder();
         try {
             startActivityForResult(picker.build(this), PLACE_PICKER_REQUEST);
@@ -227,7 +228,7 @@ public class RegisterActivity extends BaseActivity {
                     Place place = PlacePicker.getPlace(imageReturnedIntent, this);
                     updatePlace(place);
                 } else
-                    updateStatus("Free limit of choosing a place has been exhausted.");
+                    updateStatus("You have not selected any place");
             }
         }
     }

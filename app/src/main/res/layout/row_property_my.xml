@@ -25,7 +25,7 @@
             <LinearLayout style="@style/AppTheme.LinearLayout.CardView">
 
                 <TextView
-                    android:id="@+id/tvHeats"
+                    android:id="@+id/tvHits"
                     style="@style/AppTheme.TextView"
                     android:layout_width="wrap_content"
                     android:layout_gravity="right"

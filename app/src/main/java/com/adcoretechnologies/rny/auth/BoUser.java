@@ -1,7 +1,11 @@
 package com.adcoretechnologies.rny.auth;
 
 import com.adcoretechnologies.rny.util.Common;
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Irfan on 30/09/16.
@@ -20,6 +24,10 @@ public class BoUser {
         this.imei = imei;
         this.dateCreated = Common.getTimestampString();
         this.dateCreatedLong = Common.getTimestampLong();
+    }
+
+    public BoUser() {
+
     }
 
     public String getUserId() {
@@ -130,4 +138,21 @@ public class BoUser {
     public long dateCreatedLong;
     public String dateCreated;
     public String profilePicUrl;
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("name", name);
+        result.put("email", email);
+        result.put("locality", locality);
+        result.put("gender", gender);
+        result.put("latitude", latitude);
+        result.put("longitude", longitude);
+        result.put("imei", imei);
+        result.put("contactNumber", contactNumber);
+        result.put("profilePicUrl", profilePicUrl);
+        result.put("updatedOn", Common.getTimestampString());
+        result.put("updatedOnLong", Common.getTimestampLong());
+        return result;
+    }
 }

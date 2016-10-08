@@ -47,6 +47,7 @@ public class AdapterPropertyActivity extends
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final BoPropertyMy property = getItem(position);
+        holder.tvHits.setText("{fou-crown} " + property.hitCount + " hits");
         if (property.isRented()) {
             holder.tvPropertyName.setText(property.ownerName);
             holder.tvPostedOn.append(Common.convertLongToTimestamp(property.postedOnLong));
@@ -98,6 +99,8 @@ public class AdapterPropertyActivity extends
         TextView tvPostedOn;
         @BindView(R.id.tvOccupiedOn)
         TextView tvOccupiedOn;
+        @BindView(R.id.tvHits)
+        TextView tvHits;
         @BindView(R.id.ivDealType)
         ImageView ivDealType;
 

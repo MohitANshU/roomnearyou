@@ -78,6 +78,7 @@ public class HomeSellerActivity extends BaseActivity
         });
         tvName = ButterKnife.findById(headerView, R.id.tvName);
         tvEmail = ButterKnife.findById(headerView, R.id.tvEmail);
+        ivProfilePic = ButterKnife.findById(headerView, R.id.ivProfilePic);
 
         init();
         MenuItem menu = navigationView.getMenu().getItem(0);
@@ -98,6 +99,7 @@ public class HomeSellerActivity extends BaseActivity
         } else {
             tvName.setText(user.getDisplayName());
             tvEmail.setText(user.getEmail());
+            Common.showSmallRoundImage(this, ivProfilePic, user.getPhotoUrl().toString());
         }
 
         if (Const.IS_TEST)
@@ -194,7 +196,7 @@ public class HomeSellerActivity extends BaseActivity
         openAddProperty();
     }
 
-    private void openAddProperty() {
+    public void openAddProperty() {
         startActivity(new Intent(this, AddProperty.class));
     }
 
@@ -261,4 +263,5 @@ public class HomeSellerActivity extends BaseActivity
         EventBus.getDefault().unregister(this);
         super.onStop();
     }
+
 }

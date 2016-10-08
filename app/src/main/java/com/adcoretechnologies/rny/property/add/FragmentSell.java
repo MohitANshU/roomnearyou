@@ -98,7 +98,7 @@ public class FragmentSell extends BaseFragment {
     public void init() {
         componentFloorSelector = (ComponentItemSelector) getChildFragmentManager().findFragmentById(R.id.componentFloorSelector);
         if (componentFloorSelector != null) {
-            String[] items = {"Basement", "Ground", "First", "Second", "Third", "Other"};
+            String[] items = {"Select Floor", "Basement", "Ground Floor", "First Floor", "Second Floor", "Third Floor", "Other"};
             componentFloorSelector.initialize(items, "Choose floor");
         }
         if (Const.IS_TEST) {

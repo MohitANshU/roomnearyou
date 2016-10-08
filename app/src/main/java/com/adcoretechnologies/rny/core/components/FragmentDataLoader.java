@@ -61,9 +61,9 @@ public class FragmentDataLoader extends BaseFragment {
         if (message == null)
             message = "No items to show";
         tvStatus.setText(message);
-        tvStatus.setVisibility(View.VISIBLE);
-        ivStatus.setVisibility(View.VISIBLE);
         pbStatus.setVisibility(View.GONE);
+        ivStatus.setVisibility(View.VISIBLE);
+        tvStatus.setVisibility(View.VISIBLE);
         llStatus.setVisibility(View.VISIBLE);
     }
 

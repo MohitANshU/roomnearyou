@@ -49,6 +49,7 @@
                     tools:ignore="MissingPrefix" />
 
                 <TextView
+                    android:enabled="false"
                     android:id="@+id/tvProfilePic"
                     style="@style/AppTheme.TextView"
                     android:layout_marginTop="@dimen/space_x1"

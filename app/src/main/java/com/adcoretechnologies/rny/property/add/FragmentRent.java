@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import com.adcoretechnologies.rny.R;
 import com.adcoretechnologies.rny.core.base.BaseFragment;
 import com.adcoretechnologies.rny.core.components.ComponentItemSelector;
+import com.adcoretechnologies.rny.core.components.DialogDatePicker;
 import com.adcoretechnologies.rny.other.BOEventData;
 import com.adcoretechnologies.rny.property.bo.BoPostRent;
 import com.adcoretechnologies.rny.util.Common;
@@ -97,6 +98,7 @@ public class FragmentRent extends BaseFragment {
     private View view;
     private String vacantDate;
     private ComponentItemSelector componentFloorSelector;
+    private static final int DATE_VACANT = 10;
 
     public FragmentRent() {
         // Required empty public constructor
@@ -121,7 +123,7 @@ public class FragmentRent extends BaseFragment {
     public void init() {
         componentFloorSelector = (ComponentItemSelector) getChildFragmentManager().findFragmentById(R.id.componentFloorSelector);
         if (componentFloorSelector != null) {
-            String[] items = {"Basement", "Ground", "First", "Second", "Third", "Other"};
+            String[] items = {"Select Floor", "Basement", "Ground Floor", "First Floor", "Second Floor", "Third Floor", "Other"};
             componentFloorSelector.initialize(items, "Choose floor");
         }
         if (Const.IS_TEST) {
@@ -193,8 +195,18 @@ public class FragmentRent extends BaseFragment {
         EventBus.getDefault().post(new BOEventData(BOEventData.EVENT_PROPERTY_SAVED, 0));
     }
 
+    @OnClick(R.id.rbAboutToVacant)
+    public void onAboutToVacant() {
+        android.support.v4.app.DialogFragment datePicker = DialogDatePicker.newInstance(DATE_VACANT);
+        datePicker.show(getChildFragmentManager(), "vacantDate");
+    }
+
     @Override
     public void log(String message) {
         super.log(getClass().getSimpleName(), message);
+    }
+
+    public void setDate(String date) {
+        rbAboutToVacant.setText(date);
     }
 }

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import com.adcoretechnologies.rny.auth.login.LoginActivity;
 import com.adcoretechnologies.rny.home.buyer.HomeBuyerActivity;
 import com.adcoretechnologies.rny.home.seller.HomeSellerActivity;
+import com.adcoretechnologies.rny.profile.ProfileActivity;
 import com.adcoretechnologies.rny.util.Const;
 import com.adcoretechnologies.rny.util.Pref;
 import com.google.firebase.auth.FirebaseAuth;
@@ -204,7 +205,7 @@ public class LauncherActivity extends AppCompatActivity {
     private void launchApp() {
         Intent intent;
         if (Const.IS_TEST) {
-            intent = new Intent(LauncherActivity.this, LoginActivity.class);
+            intent = new Intent(LauncherActivity.this, ProfileActivity.class);
         } else {
             if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                 intent = new Intent(LauncherActivity.this, LoginActivity.class);

@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.adcoretechnologies.rny.R;
@@ -33,6 +35,7 @@ public class AddProperty extends BaseActivity implements FragmentImageUpload.Ima
 
     private static final int REQUEST_IMAGE_PICK = 1;
     private static final int PLACE_PICKER_REQUEST = 2;
+    private static final int DATE_VACANT = 10;
     @BindView(R.id.etOwnwerName)
     TextInputEditText etOwnwerName;
     @BindView(R.id.etContactNumber)
@@ -47,12 +50,37 @@ public class AddProperty extends BaseActivity implements FragmentImageUpload.Ima
     Button btnSave;
     @BindView(R.id.activity_add_property)
     LinearLayout activityAddProperty;
+    @BindView(R.id.rgPropertyType)
+    RadioGroup rgPropertyType;
 
     private double latitude;
     private double longitude;
     private FragmentImageUpload fragmentImageUploader;
     private FragmentRent fragmentRent;
     private FragmentSell fragmentSell;
+    private String ownerName;
+    private String contactNumber;
+    private String locality;
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public String getLocality() {
+        return locality;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
 
     public ArrayList<String> getAllUploadedImage() {
         return allUploadedImage;
@@ -89,7 +117,29 @@ public class AddProperty extends BaseActivity implements FragmentImageUpload.Ima
     }
 
     public void onPropertySelection(View view) {
+        ownerName = etOwnwerName.getText().toString();
+        contactNumber = etContactNumber.getText().toString();
+        locality = tvLocality.getText().toString();
 
+        if (TextUtils.isEmpty(ownerName)) {
+            etOwnwerName.setError("Please provide input");
+            rgPropertyType.clearCheck();
+            return;
+        }
+        if (TextUtils.isEmpty(contactNumber)) {
+            etContactNumber.setError("Please provide input");
+            rgPropertyType.clearCheck();
+            return;
+        } else if (contactNumber.length() != 10) {
+            etContactNumber.setError("Contact number must be of 10 digit");
+            rgPropertyType.clearCheck();
+            return;
+        }
+        if (TextUtils.isEmpty(locality)) {
+            toast("Please select locality of property");
+            rgPropertyType.clearCheck();
+            return;
+        }
 
         boolean checked = ((RadioButton) view).isChecked();
         switch (view.getId()) {
@@ -125,28 +175,9 @@ public class AddProperty extends BaseActivity implements FragmentImageUpload.Ima
         }
     }
 
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public String getOwnerName() {
-        return etOwnwerName.getText().toString();
-    }
-
-    public String getContactNumber() {
-        return etContactNumber.getText().toString();
-    }
-
-    public String getLocality() {
-        return tvLocality.getText().toString();
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
     @OnClick(R.id.tvLocality)
     public void openPlacePicker() {
+        toast("Please wait...");
         PlacePicker.IntentBuilder picker = new PlacePicker.IntentBuilder();
         try {
 //            LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -183,7 +214,7 @@ public class AddProperty extends BaseActivity implements FragmentImageUpload.Ima
                     Place place = PlacePicker.getPlace(imageReturnedIntent, this);
                     updatePlace(place);
                 } else
-                    updateStatus("Free limit of choosing a place has been exhausted.");
+                    updateStatus("You have not selected any place");
             }
         }
     }
@@ -196,6 +227,8 @@ public class AddProperty extends BaseActivity implements FragmentImageUpload.Ima
 
         }
     }
+
+
 
     public void onEventMainThread(BOEventData eventData) {
 
@@ -238,5 +271,11 @@ public class AddProperty extends BaseActivity implements FragmentImageUpload.Ima
     @Override
     public void onImageUploadFailed() {
 
+    }
+
+    public void setDate(int whichDate, String date) {
+        if (fragmentRent != null && whichDate == DATE_VACANT) {
+            fragmentRent.setDate(date);
+        }
     }
 }
