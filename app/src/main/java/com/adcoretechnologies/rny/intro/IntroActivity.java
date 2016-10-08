@@ -18,8 +18,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.adcoretechnologies.rny.MainActivity;
+import com.adcoretechnologies.rny.LauncherActivity;
 import com.adcoretechnologies.rny.R;
+import com.adcoretechnologies.rny.util.Const;
 import com.adcoretechnologies.rny.util.Pref;
 
 /**
@@ -37,13 +38,6 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Checking for first time launch - before calling setContentView()
-        boolean isFirstTime = Pref.ReadBoolean(getApplicationContext(), Pref.IS_FIRST_TIME, true);
-//        if (!isFirstTime) {
-//            launchHomeScreen();
-//            finish();
-//        }
 
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
@@ -123,8 +117,8 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     private void launchHomeScreen() {
-//        Pref.WriteBoolean(getApplicationContext(), Pref.IS_FIRST_TIME, false);
-        startActivity(new Intent(this, MainActivity.class));
+        Pref.WriteBoolean(getApplicationContext(), Const.PREF_IS_INTRO_DONE, true);
+        startActivity(new Intent(this, LauncherActivity.class));
         finish();
     }
 

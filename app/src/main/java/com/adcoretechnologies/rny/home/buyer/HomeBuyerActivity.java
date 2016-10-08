@@ -115,7 +115,8 @@ public class HomeBuyerActivity extends BaseActivity
         } else {
             tvName.setText(user.getDisplayName());
             tvEmail.setText(user.getEmail());
-            Common.showSmallRoundImage(this, ivProfilePic, user.getPhotoUrl().toString());
+            if (user.getPhotoUrl() != null)
+                Common.showSmallRoundImage(this, ivProfilePic, user.getPhotoUrl().toString());
         }
     }
 

@@ -129,7 +129,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void redirectToNextScreen() {
-        startActivity(new Intent(this, RoleChooserActivity.class));
+        Intent intent = new Intent(this, RoleChooserActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
 
     }

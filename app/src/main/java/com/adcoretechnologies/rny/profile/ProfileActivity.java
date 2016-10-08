@@ -106,7 +106,8 @@ public class ProfileActivity extends BaseActivity {
             etName.setText(user.getDisplayName());
             etEmail.setText(user.getEmail());
             profilePicUrl = user.getPhotoUrl();
-            Common.showRoundImage(this, ivProfilePic, profilePicUrl.toString());
+            if (profilePicUrl != null)
+                Common.showRoundImage(this, ivProfilePic, profilePicUrl.toString());
             fetchDetailProfile(user.getUid());
         } else {
             toast("You are not logged in");

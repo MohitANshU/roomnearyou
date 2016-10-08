@@ -10,9 +10,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
-import com.adcoretechnologies.rny.auth.login.LoginActivity;
+import com.adcoretechnologies.rny.auth.register.RegisterActivity;
 import com.adcoretechnologies.rny.home.buyer.HomeBuyerActivity;
 import com.adcoretechnologies.rny.home.seller.HomeSellerActivity;
 import com.adcoretechnologies.rny.profile.ProfileActivity;
@@ -30,7 +30,7 @@ public class LauncherActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_PHONE_STATE = 3;
 
     @BindView(R.id.llParent)
-    LinearLayout llParent;
+    RelativeLayout llParent;
 
 
     @Override
@@ -208,7 +208,7 @@ public class LauncherActivity extends AppCompatActivity {
             intent = new Intent(LauncherActivity.this, ProfileActivity.class);
         } else {
             if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-                intent = new Intent(LauncherActivity.this, LoginActivity.class);
+                intent = new Intent(LauncherActivity.this, RegisterActivity.class);
             } else {
                 boolean isSeller = Pref.ReadBoolean(getApplicationContext(), Const.PREF_IS_SELLER, false);
                 if (isSeller) {

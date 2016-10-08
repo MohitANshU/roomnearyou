@@ -97,7 +97,7 @@ public class RegisterActivity extends BaseActivity {
 
     @OnClick(R.id.btnRegister)
     public void onRegister() {
-        String defaultError="Please provide input";
+        String defaultError = "Please provide input";
 
         String name = etName.getText().toString();
         if (TextUtils.isEmpty(name)) {
@@ -195,8 +195,10 @@ public class RegisterActivity extends BaseActivity {
     }
 
     private void redirectToNextScreen() {
-        startActivity(new Intent(this, RoleChooserActivity.class));
-
+        Intent intent = new Intent(this, RoleChooserActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     @OnClick(R.id.tvLocality)
